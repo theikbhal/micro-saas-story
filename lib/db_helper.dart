@@ -16,6 +16,10 @@ class DBHelper {
 
   Future<Database> _initDB() async {
     final path = join(await getDatabasesPath(), 'stories.db');
+
+  // delete old DB for development purposes
+  // await deleteDatabase(path);
+
     return await openDatabase(
       path,
       version: 1,
@@ -28,7 +32,8 @@ class DBHelper {
             founder TEXT,
             product TEXT,
             link TEXT,
-            image TEXT
+            image TEXT,
+    tags TEXT
           )
         ''');
       },

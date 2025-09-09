@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'db_helper.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({super.key});
@@ -13,26 +13,36 @@ class _AdminPageState extends State<AdminPage> {
   final TextEditingController _jsonController = TextEditingController();
   String _statusMessage = "";
 
-  void _addStory() {
+  void _addStory() async {
     try {
       final parsed = jsonDecode(_jsonController.text);
 
-      // Check if parsed is a Map with required keys
       if (parsed is Map &&
           parsed.containsKey("title") &&
           parsed.containsKey("content") &&
           parsed.containsKey("founder") &&
           parsed.containsKey("product") &&
           parsed.containsKey("link")) {
-        // Here you can save to local SQLite or in-memory list
+
+        // Insert into SQLite
+        await DBHelper().insertStory({
+          'title': parsed['title'],
+          'content': parsed['content'],
+          'founder': parsed['founder'],
+          'product': parsed['product'],
+          'link': parsed['link'],
+          'image': parsed['image'] ?? '',
+          'tags': parsed['tags']?.join(',') ?? '', // optional tags as comma string
+        });
+
         _statusMessage = "Story added successfully!";
         _jsonController.clear();
       } else {
         _statusMessage =
-            "Invalid JSON structure! Required keys: title, content, founder, product, link";
+            "Invalid JSON! Required: title, content, founder, product, link";
       }
     } catch (e) {
-      _statusMessage = "JSON parsing error: ${e.toString()}";
+      _statusMessage = "JSON error: ${e.toString()}";
     }
 
     setState(() {});
@@ -41,9 +51,7 @@ class _AdminPageState extends State<AdminPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Admin Page"),
-      ),
+      appBar: AppBar(title: const Text("Admin Page")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -58,10 +66,10 @@ class _AdminPageState extends State<AdminPage> {
                 controller: _jsonController,
                 maxLines: null,
                 expands: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText:
-                      '{ "title": "Micro-SaaS Example", "content": "Short story here", "founder": "John Doe", "product": "Example App", "link": "https://example.com" }',
+                      '{ "title": "Example", "content": "Story content", "founder": "John", "product": "App", "link": "https://example.com", "tags":["SaaS","Build"] }',
                 ),
               ),
             ),
