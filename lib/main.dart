@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart'; // For opening links
 import 'package:share_plus/share_plus.dart'; // For sharing
+import 'admin_page.dart';
+
 
 void main() {
   runApp(const MainApp());
@@ -112,7 +114,33 @@ class MicroSaaSLandingPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
 
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.pink.shade400,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              onPressed: () {
+                // Navigate to AdminPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AdminPage()),
+                );
+              },
+              child: const Text(
+                "Admin: Add Story",
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+            ),
+
+            const SizedBox(height: 20),
 
             // Story Cards
             for (var story in stories) ...[
@@ -184,12 +212,13 @@ class MicroSaaSLandingPage extends StatelessWidget {
                       // Tags
                       Wrap(
                         spacing: 8,
-                        children: (story["tags"] as List<String>).map((tag) {
-                          return Chip(
-                            label: Text(tag),
-                            backgroundColor: Colors.pink.shade100,
-                          );
-                        }).toList(),
+                        children:
+                            (story["tags"] as List<String>).map((tag) {
+                              return Chip(
+                                label: Text(tag),
+                                backgroundColor: Colors.pink.shade100,
+                              );
+                            }).toList(),
                       ),
 
                       const SizedBox(height: 16),
@@ -225,8 +254,10 @@ class MicroSaaSLandingPage extends StatelessWidget {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.pink,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 32,
+                  vertical: 14,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
