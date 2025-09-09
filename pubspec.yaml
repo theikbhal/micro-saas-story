@@ -10,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   url_launcher: ^6.2.5
+  share_plus: ^11.1.0
+  sqflite: ^2.3.0
 
 dev_dependencies:
   flutter_test:

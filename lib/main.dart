@@ -15,7 +15,21 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Arial',
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.pink,
+        scaffoldBackgroundColor: Colors.pink[50],
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.pink,
+          foregroundColor: Colors.white,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.pink,
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        ),
       ),
       home: const MicroSaaSLandingPage(),
     );
@@ -32,10 +46,10 @@ class MicroSaaSLandingPage extends StatelessWidget {
         "title": "📖 IndieAnalytics",
         "content":
             "An indie founder built a simple analytics dashboard for small blogs. "
-                "Started as a weekend project, validated by talking to 10 bloggers. "
-                "Used Twitter + Reddit to market. "
-                "Reached \$500 MRR in 6 months with almost zero costs. "
-                "Focus was on customer care, writing tutorials, and SEO.",
+            "Started as a weekend project, validated by talking to 10 bloggers. "
+            "Used Twitter + Reddit to market. "
+            "Reached \$500 MRR in 6 months with almost zero costs. "
+            "Focus was on customer care, writing tutorials, and SEO.",
         "tags": ["Validation", "SEO", "Build in Public"],
         "founder": "Alex Johnson",
         "product": "IndieAnalytics",
@@ -45,10 +59,10 @@ class MicroSaaSLandingPage extends StatelessWidget {
         "title": "📖 TaskTiny",
         "content":
             "A lightweight task manager for freelancers. Founder validated idea by "
-                "sharing early mockups in design communities. "
-                "Kept pricing at \$5/month to attract first 50 users. "
-                "Hit \$800 MRR in the first year. Marketing was mainly through "
-                "content writing and Twitter threads.",
+            "sharing early mockups in design communities. "
+            "Kept pricing at \$5/month to attract first 50 users. "
+            "Hit \$800 MRR in the first year. Marketing was mainly through "
+            "content writing and Twitter threads.",
         "tags": ["Content Writing", "Community", "Low Pricing"],
         "founder": "Maria Lopez",
         "product": "TaskTiny",
@@ -58,9 +72,9 @@ class MicroSaaSLandingPage extends StatelessWidget {
         "title": "📖 SocialCaption",
         "content":
             "Solo founder created an AI tool to generate Instagram captions. "
-                "Started free on Product Hunt and converted 2% to paid users. "
-                "Early growth from TikTok videos + SEO blogs. "
-                "Currently doing around \$700 MRR with minimal costs.",
+            "Started free on Product Hunt and converted 2% to paid users. "
+            "Early growth from TikTok videos + SEO blogs. "
+            "Currently doing around \$700 MRR with minimal costs.",
         "tags": ["Product Hunt", "SEO", "Social Media"],
         "founder": "Sam Patel",
         "product": "SocialCaption",
@@ -69,7 +83,7 @@ class MicroSaaSLandingPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.indigo.shade50,
+      backgroundColor: Colors.pink[50],
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -83,7 +97,7 @@ class MicroSaaSLandingPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.indigo.shade700,
+                color: Colors.pink.shade700,
               ),
               textAlign: TextAlign.center,
             ),
@@ -92,7 +106,7 @@ class MicroSaaSLandingPage extends StatelessWidget {
               "Discover inspiring stories of solo founders who built small, profitable SaaS products under \$1000 MRR 🚀",
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.grey.shade800,
+                color: Colors.pink.shade800,
                 height: 1.5,
               ),
               textAlign: TextAlign.center,
@@ -119,7 +133,7 @@ class MicroSaaSLandingPage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.indigo.shade700,
+                          color: Colors.pink.shade700,
                         ),
                       ),
                       const SizedBox(height: 12),
@@ -142,7 +156,7 @@ class MicroSaaSLandingPage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: Colors.grey.shade700,
+                          color: Colors.pink.shade700,
                         ),
                       ),
 
@@ -173,7 +187,7 @@ class MicroSaaSLandingPage extends StatelessWidget {
                         children: (story["tags"] as List<String>).map((tag) {
                           return Chip(
                             label: Text(tag),
-                            backgroundColor: Colors.indigo.shade100,
+                            backgroundColor: Colors.pink.shade100,
                           );
                         }).toList(),
                       ),
@@ -187,7 +201,7 @@ class MicroSaaSLandingPage extends StatelessWidget {
                           icon: const Icon(Icons.share, size: 18),
                           label: const Text("Share"),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.indigo,
+                            backgroundColor: Colors.pink,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
@@ -210,7 +224,7 @@ class MicroSaaSLandingPage extends StatelessWidget {
             // CTA
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.indigo,
+                backgroundColor: Colors.pink,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
                 shape: RoundedRectangleBorder(
